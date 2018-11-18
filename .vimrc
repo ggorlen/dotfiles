@@ -24,7 +24,7 @@ set laststatus=2
 " }}}
 
 " FONT {{{
-set gfn=Consolas:h12:cANSI
+set gfn=Source\ Code\ Pro:h11
 " }}}
 
 " COLORS {{{
