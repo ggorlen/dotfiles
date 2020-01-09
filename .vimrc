@@ -24,7 +24,7 @@ set laststatus=2
 " }}}
 
 " FONT {{{
-set gfn=Consolas:h12:cANSI
+set gfn=Consolas:h10:cANSI
 " }}}
 
 " COLORS {{{
@@ -54,8 +54,14 @@ nnoremap / /\v
 vnoremap / /\v
 " }}}
 
+" AUTOCMD {{{{
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
+
+" Associate file types with a particular language highlight style
+autocmd BufEnter *.tsx,*.jsx,*.ts :setlocal filetype=javascript
+" }}}
+
