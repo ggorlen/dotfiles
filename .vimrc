@@ -63,5 +63,6 @@ endif
 
 " Associate file types with a particular language highlight style
 autocmd BufEnter *.tsx,*.jsx,*.ts :setlocal filetype=javascript
+au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 " }}}
 
