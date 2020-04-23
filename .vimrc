@@ -1,6 +1,12 @@
 " vim:fdm=marker
 
 " COMMON {{{
+
+" stop DOS line endings
+set fileformat=unix
+set fileformats=unix,dos
+"set nobinary
+
 " :set guioptions-=m  "remove menu bar
 :set guioptions-=T  "remove toolbar
 :set guioptions-=r  "remove right-hand scroll bar
@@ -10,6 +16,7 @@ au GUIEnter * simalt ~x
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
 map <F3> :source ~/vim_session <cr>     " And load session with F3
 
+set encoding=utf-8
 set nocompatible
 set tabstop=4
 set expandtab
