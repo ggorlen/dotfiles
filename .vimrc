@@ -31,7 +31,11 @@ set laststatus=2
 " }}}
 
 " FONT {{{
-set gfn=Consolas:h10:cANSI
+if has('gui_gtk')
+    set guifont=Dejavu\ Sans\ Mono\ 12
+else
+    set guifont=Consolas:h12
+endif
 " }}}
 
 " COLORS {{{
