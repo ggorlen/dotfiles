@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+
+# navigation
+function cd() {
+    command pushd "$@" > /dev/null;
+}
+function popd() {
+    command popd "$@" > /dev/null;
+}
+function cdd() {
+    cd "$@" && ll;
+}
+function mkd() {
+    mkdir -p "$@" && cd "$_";
+}
+
+# utilities
+weather() {
+    local LOCALE=$(echo ${LANG:-en} | cut -c1-2)
+    if [ $# -eq 0 ]; then
+        local LOCATION=$(curl -s ipinfo.io/loc)
+    else
+        local LOCATION=$1
+    fi
+    curl -s "$LOCALE.wttr.in/$LOCATION?format=v2"
+}
+
+# media
+yt-play() {
+    [ $1 ] || { echo "missing URL"; return 1; }
+
+    curl -sS $1 | tac | tac \
+    | grep -oP 'https:\/\/www\.youtube\.com\/watch[^"]+' \
+    | xargs ./youtube-dl -f 249 -o - \
+    | ffplay -nodisp -autoexit -i -
+}
+
+mp3-play() {
+    [ $1 ] || { echo "missing URL"; return 1; }
+
+    curl -A "Mozilla/8.0" -sS $1 \
+    | xmllint --html --xpath '//a[substring(@href, string-length(@href) - string-length(".mp3") + 1) = ".mp3"]/@href' - \
+    | sed 's/^ href="\|"$//g' \
+    | mpv --playlist=-
+}
+
+mp3-dl() {
+    [ $1 ] || { echo "missing URL"; return 1; }
+
+    wget -r -l1 -H -nd -A mp3 -e robots=off $1
+}
+
+bc-play-album() {
+    [ $1 ] || { echo "missing URL"; return 1; }
+
+    curl -sS $1 \
+    | xmllint --html --xpath '//script[@data-tralbum]/@data-tralbum' 2>/dev/null - \
+    | sed 's/^ data-tralbum="\|"$//g' \
+    | perl -MHTML::Entities -pe 'decode_entities($_);' \
+    | jq -r '.trackinfo[].file."mp3-128"' \
+    | mpv -no-video --playlist=-
+}
+
+bc-play-artist() {
+    [ $1 ] || { echo "missing URL"; return 1; }
+
+    curl -sS "$1/music" \
+    | xmllint --html --xpath '//a[@href]/@href' 2>/dev/null - \
+    | grep -oP '/album[^"]+' \
+    | awk -v url=$1 '{print url$1}' \
+    | xargs curl -sS \
+    | xmllint --html --xpath '//script[@data-tralbum]/@data-tralbum' 2>/dev/null - \
+    | sed 's/^ data-tralbum="\|"$//g' \
+    | perl -MHTML::Entities -pe 'decode_entities($_);' \
+    | jq -r '.trackinfo[].file."mp3-128"' \
+    | mpv -no-video --playlist=-
+}
+
+bc-play-collection() {
+    [[ $1 ]] && url="$1" || url="https://bandcamp.com/ggorlen/"
+
+    curl -sS $url \
+    | xmllint --html --xpath '//*[@id="pagedata"]/@data-blob' 2>/dev/null - \
+    | sed 's/^ data-blob="\|"$//g' \
+    | perl -MHTML::Entities -pe 'decode_entities($_);' \
+    | jq '{fan_id: .fan_data.fan_id, 
+           older_than_token: .wishlist_data.last_token, count: 10}' \
+    | curl -sS -X POST -H "Content-Type: Application/JSON" \
+      --data-binary @- https://bandcamp.com/api/fancollection/1/collection_items \
+    | jq -r .items[].item_url \
+    | xargs curl -sS \
+    | xmllint --html --xpath '//script[@data-tralbum]/@data-tralbum' 2>/dev/null - \
+    | sed 's/^ data-tralbum="\|"$//g' \
+    | perl -MHTML::Entities -pe 'decode_entities($_);' \
+    | jq -r '.trackinfo[].file."mp3-128"' \
+    | mpv -no-video --playlist=-
+}
+
