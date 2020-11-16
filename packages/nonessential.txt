@@ -19,5 +19,6 @@ qmmp
 recode
 rename
 spim
+supercollider
 vagrant
 virtualbox
