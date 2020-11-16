@@ -8,6 +8,7 @@ sudo -n true
 home=$1
 
 ln -sv $home/dotfiles/.bash_profile $home/.bash_profile
+ln -sv $home/dotfiles/.bashrc $home/.bashrc
 ln -sv $home/dotfiles/.vimrc $home/.vimrc
 sudo apt update && sudo apt upgrade -y
 

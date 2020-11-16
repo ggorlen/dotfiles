@@ -15,6 +15,10 @@ function mkd() {
 }
 
 # utilities
+calc() {
+    echo "$*" | bc -l;
+}
+
 weather() {
     local LOCALE=$(echo ${LANG:-en} | cut -c1-2)
     if [ $# -eq 0 ]; then
