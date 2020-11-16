@@ -1,7 +1,8 @@
 # dotfiles
 
 ```
-git clone https://github.com/ggorlen/dotfiles.git && source dotfiles/install.sh
+git clone https://github.com/ggorlen/dotfiles.git && \
+sudo ./install.sh ~
 ```
 
 ## Resources

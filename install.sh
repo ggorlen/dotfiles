@@ -2,8 +2,13 @@
 
 set -eu -o pipefail
 sudo -n true
-ln -sv ~/dotfiles/.bash_profile ~/.bash_profile
-ln -sv ~/dotfiles/.vimrc ~/.vimrc
+
+[ $# -eq 0 ] && { echo "no home directory provided"; exit 1; }
+
+home=$1
+
+ln -sv $home/dotfiles/.bash_profile $home/.bash_profile
+ln -sv $home/dotfiles/.vimrc $home/.vimrc
 sudo apt update && sudo apt upgrade -y
 
 read -p "install nonessential packages? (y/n) " nonessential
