@@ -1,22 +1,28 @@
 #!/usr/bin/env bash
 
 # navigation
-function cd() {
+cd() {
     command pushd "$@" > /dev/null;
 }
-function popd() {
+popd() {
     command popd "$@" > /dev/null;
 }
-function cdd() {
+cdd() {
     cd "$@" && ll;
 }
-function mkd() {
+mkd() {
     mkdir -p "$@" && cd "$_";
 }
 
 # utilities
 calc() {
     echo "$*" | bc -l;
+}
+
+mkalert() {
+    [ $1 ] || { echo "missing time (e.g. 10:30)"; return 1; }
+
+    echo 'spd-say "the timer has expired" -r -50 -t male3' | at $1
 }
 
 weather() {
@@ -35,8 +41,8 @@ yt-play() {
 
     curl -sS $1 | tac | tac \
     | grep -oP 'https:\/\/www\.youtube\.com\/watch[^"]+' \
-    | xargs ./youtube-dl -f 249 -o - \
-    | ffplay -nodisp -autoexit -i -
+    | xargs youtube-dl -f 140 -o - \
+    | ffplay -nodisp -autoexit -loglevel panic -hide_banner -i -
 }
 
 mp3-play() {
@@ -45,7 +51,7 @@ mp3-play() {
     curl -A "Mozilla/8.0" -sS $1 \
     | xmllint --html --xpath '//a[substring(@href, string-length(@href) - string-length(".mp3") + 1) = ".mp3"]/@href' - \
     | sed 's/^ href="\|"$//g' \
-    | mpv --playlist=-
+    | mpv -no-video --playlist=-
 }
 
 mp3-dl() {
