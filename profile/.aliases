@@ -13,3 +13,5 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# safer rm by default
+alias rm='rm -I'

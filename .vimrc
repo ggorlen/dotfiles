@@ -32,9 +32,9 @@ set laststatus=2
 
 " FONT {{{
 if has('gui_gtk')
-    set guifont=Dejavu\ Sans\ Mono\ 12
+    set guifont=Dejavu\ Sans\ Mono\ 10
 else
-    set guifont=Consolas:h12
+    set guifont=Consolas:h10:cANSI
 endif
 " }}}
 
