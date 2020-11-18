@@ -8,6 +8,7 @@ mpg123
 mpv
 nodejs
 npm
+ogg123
 perl
 python3
 python3-lxml
