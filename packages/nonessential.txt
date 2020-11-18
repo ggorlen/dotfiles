@@ -16,6 +16,7 @@ postgresql
 puredata
 qjackctl
 qmmp
+qutebrowser
 recode
 rename
 spim
