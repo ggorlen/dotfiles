@@ -2,7 +2,7 @@
 
 ```
 git clone https://github.com/ggorlen/dotfiles.git && \
-sudo ./install.sh ~
+sudo ./dotfiles/install.sh ~
 ```
 
 ## Resources
