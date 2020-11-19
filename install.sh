@@ -7,12 +7,13 @@ sudo -n true
 
 home=$1
 
-ln -sv $home/dotfiles/.bash_profile $home/.bash_profile
-ln -sv $home/dotfiles/.bashrc $home/.bashrc
-ln -sv $home/dotfiles/.vimrc $home/.vimrc
-sudo apt update && sudo apt upgrade -y
-
 read -p "install nonessential packages? (y/n) " nonessential
+
+ln -sv .bash_profile $home/.bash_profile
+[ -f $home/.bashrc ] && mv $home/.bashrc $home/.bashrc_backup
+ln -sv .bashrc $home/.bashrc
+ln -sv .vimrc $home/.vimrc
+sudo apt update && sudo apt upgrade -y
 
 cat packages/essential.txt | xargs sudo apt -y install
 [ $nonessential = "y" ] && cat packages/nonessential.txt | xargs sudo apt -y install
