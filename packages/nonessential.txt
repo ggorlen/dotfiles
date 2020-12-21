@@ -14,6 +14,7 @@ milkytracker
 pandoc
 peek
 postgresql
+pup
 puredata
 qjackctl
 qmmp
@@ -24,3 +25,4 @@ spim
 supercollider
 vagrant
 virtualbox
+yq
