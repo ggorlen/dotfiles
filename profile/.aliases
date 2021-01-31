@@ -15,3 +15,6 @@ alias l='ls -CF'
 
 # safer rm by default
 alias rm='rm -I'
+
+# python
+alias py="python3"
