@@ -9,12 +9,15 @@ alias ~="cd ~"
 alias -- -="cd -"
 
 # listing files
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll="ls -alF"
+alias la="ls -A"
+alias l="ls -CF"
 
 # safer rm by default
-alias rm='rm -I'
+alias rm="rm -I"
 
 # python
 alias py="python3"
+
+# clipboard
+alias clip="xclip -select clip"
