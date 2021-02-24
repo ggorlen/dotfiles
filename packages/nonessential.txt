@@ -9,6 +9,7 @@ gimp
 gnome-tweak-tool
 heroku
 libreoffice
+libsqlite3-dev
 lynx
 milkytracker
 pandoc
