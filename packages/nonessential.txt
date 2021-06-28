@@ -1,6 +1,7 @@
 at
 clang
 csound
+ctags
 default-jre
 docker
 ecryptfs-utils
