@@ -21,3 +21,7 @@ alias py="python3"
 
 # clipboard
 alias clip="xclip -select clip"
+
+# disk usage
+alias hdu "du -h --max-depth=1"
+
