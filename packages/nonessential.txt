@@ -8,6 +8,7 @@ ecryptfs-utils
 firefox
 gimp
 gnome-tweak-tool
+graphviz
 heroku
 libreoffice
 libsqlite3-dev
