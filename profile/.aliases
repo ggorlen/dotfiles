@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # navigation
-alias .="pushd ."
 alias ..="pushd .."
 alias ...="pushd ../.."
 alias ....="pushd ../../.."
