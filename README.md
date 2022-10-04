@@ -11,6 +11,7 @@ sudo ./install.sh ~
 - https://github.com/mathiasbynens/dotfiles
 - https://github.com/victoriadrake/dotfiles
 - https://github.com/choochootrain/choochoo-toolkit
+- https://dotfiles.github.io/
 
 ## TODO
 - Gnome settings backup
