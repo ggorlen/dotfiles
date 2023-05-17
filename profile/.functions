@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # navigation
+
 cd() {
     command pushd "$@" > /dev/null;
 }
@@ -15,6 +16,7 @@ mkd() {
 }
 
 # utilities
+
 calc() {
     echo "$*" | bc -l;
 }
@@ -36,16 +38,29 @@ weather() {
 }
 
 # media
-yt-play() {
+
+play-discogs() {
+    # Plays audio for a Discogs release
     [ $1 ] || { echo "missing URL"; return 1; }
 
     curl -sS $1 | tac | tac \
-    | grep -oP 'https:\/\/www\.youtube\.com\/watch[^"]+' \
-    | xargs youtube-dl -f 140 -o - \
-    | ffplay -nodisp -autoexit -loglevel panic -hide_banner -i -
+    | tac | tac \
+    | grep -oP 'https:\/\/www\.youtube\.com\/watch[^ "]+' \
+    | xargs mpv --no-video
 }
 
-mp3-play() {
+play-yt() {
+    # Plays audio for all YouTube video URLs on a site
+    [ $1 ] || { echo "missing URL"; return 1; }
+
+    curl -sS $1 | tac | tac \
+    | tac | tac \
+    | grep -oP 'https:\/\/www\.youtube\.com\/watch[^ "]+' \
+    | xargs mpv --no-video
+}
+
+play-mp3s() {
+    # Plays all mp3s on a website
     [ $1 ] || { echo "missing URL"; return 1; }
 
     curl -A "Mozilla/8.0" -sS $1 \
@@ -54,13 +69,15 @@ mp3-play() {
     | mpv -no-video --playlist=-
 }
 
-mp3-dl() {
+dl-mp3s() {
+    # Downloads all mp3s on a website
     [ $1 ] || { echo "missing URL"; return 1; }
 
     wget -r -l1 -H -nd -A mp3 -e robots=off $1
 }
 
-bc-play-album() {
+play-bc-album() {
+    # Plays an album from Bandcamp
     [ $1 ] || { echo "missing URL"; return 1; }
 
     curl -sS $1 \
@@ -71,7 +88,8 @@ bc-play-album() {
     | mpv -no-video --playlist=-
 }
 
-bc-play-artist() {
+play-bc-artist() {
+    # Plays all albums for an artist on Bandcamp
     [ $1 ] || { echo "missing URL"; return 1; }
 
     curl -sS "$1/music" \
@@ -86,7 +104,8 @@ bc-play-artist() {
     | mpv -no-video --playlist=-
 }
 
-bc-play-collection() {
+play-bc-collection() {
+    # Plays a collection on Bandcamp
     [[ $1 ]] && url="$1" || url="https://bandcamp.com/ggorlen/"
 
     curl -sS $url \
