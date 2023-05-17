@@ -43,9 +43,12 @@ play-discogs() {
     # Plays audio for a Discogs release
     [ $1 ] || { echo "missing URL"; return 1; }
 
-    curl -sS $1 | tac | tac \
-    | tac | tac \
-    | grep -oP 'https:\/\/www\.youtube\.com\/watch[^ "]+' \
+    curl -sS $1 \
+    | xmllint --html --xpath 'string(//*[@id="dsdata"])' 2>/dev/null - \
+    | jq \
+    | grep -P 'youtubeId' \
+    | cut -d \" -f 4 \
+    | awk '{print "https://www.youtube.com/watch?v=" $0}' \
     | xargs mpv --no-video
 }
 
