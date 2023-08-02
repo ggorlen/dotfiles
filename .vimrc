@@ -21,6 +21,7 @@ set nocompatible
 set tabstop=4
 set expandtab
 set autoindent
+set shortmess-=S
 " }}
 
 " DISPLAY {{{
