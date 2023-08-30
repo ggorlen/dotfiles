@@ -13,12 +13,7 @@ numpy
 openpyxl
 pandas
 Pillow
-PuLP
 pygame
-pyparsing
-pyppeteer
 requests
-scipy
-selenium
 SQLAlchemy
-youtube_dl
+yt-dlp

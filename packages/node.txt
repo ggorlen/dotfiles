@@ -1,9 +1,8 @@
 create-react-app
-heroku
 jest
-n
 nodemon
 npkill
 npm-check-updates
 preact-cli
 typescript
+yarn
