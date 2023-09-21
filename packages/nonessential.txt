@@ -16,6 +16,7 @@ graphviz
 heroku
 libreoffice
 libsqlite3-dev
+love
 lynx
 milkytracker
 mpg123
