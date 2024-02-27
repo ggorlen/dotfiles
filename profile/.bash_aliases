@@ -11,9 +11,8 @@ alias ........="pushd ../../../../../../.."
 alias ~="cd ~"
 
 # listing files
-alias ll="ls -halF"
-alias la="ls -A"
-alias l="ls -CF"
+alias ll="ls -hAl"
+alias l="ll"
 
 # python
 alias py="python3"
@@ -22,6 +21,7 @@ alias py="python3"
 alias clip="xclip -select clip"
 
 # disk usage
-alias dud="du -h -d 1"
+alias dud="du -h -d1"
 
-alias qual="cd ~/programming/qualified/qualified"
+alias g="grep -RiP --exclude-dir={node_modules,.git,build,dist}"
+alias rmfirst='rm "$(ls | head -1)"'
