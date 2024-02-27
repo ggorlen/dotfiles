@@ -39,29 +39,6 @@ weather() {
 
 # media
 
-play-discogs() {
-    # Plays audio for a Discogs release
-    [ $1 ] || { echo "missing URL"; return 1; }
-
-    curl -sS $1 \
-    | xmllint --html --xpath 'string(//*[@id="dsdata"])' 2>/dev/null - \
-    | jq \
-    | grep -P 'youtubeId' \
-    | cut -d \" -f 4 \
-    | awk '{print "https://www.youtube.com/watch?v=" $0}' \
-    | xargs mpv --no-video
-}
-
-play-yt() {
-    # Plays audio for all YouTube video URLs on a site
-    [ $1 ] || { echo "missing URL"; return 1; }
-
-    curl -sS $1 | tac | tac \
-    | tac | tac \
-    | grep -oP 'https:\/\/www\.youtube\.com\/watch[^ "]+' \
-    | xargs mpv --no-video
-}
-
 play-mp3s() {
     # Plays all mp3s on a website
     [ $1 ] || { echo "missing URL"; return 1; }
@@ -77,34 +54,6 @@ dl-mp3s() {
     [ $1 ] || { echo "missing URL"; return 1; }
 
     wget -r -l1 -H -nd -A mp3 -e robots=off $1
-}
-
-play-bc-album() {
-    # Plays an album from Bandcamp
-    [ $1 ] || { echo "missing URL"; return 1; }
-
-    curl -sS $1 \
-    | xmllint --html --xpath '//script[@data-tralbum]/@data-tralbum' 2>/dev/null - \
-    | sed 's/^ data-tralbum="\|"$//g' \
-    | perl -MHTML::Entities -pe 'decode_entities($_);' \
-    | jq -r '.trackinfo[].file."mp3-128"' \
-    | mpv -no-video --playlist=-
-}
-
-play-bc-artist() {
-    # Plays all albums for an artist on Bandcamp
-    [ $1 ] || { echo "missing URL"; return 1; }
-
-    curl -sS "$1/music" \
-    | xmllint --html --xpath '//a[@href]/@href' 2>/dev/null - \
-    | grep -oP '/album[^"]+' \
-    | awk -v url=$1 '{print url$1}' \
-    | xargs curl -sS \
-    | xmllint --html --xpath '//script[@data-tralbum]/@data-tralbum' 2>/dev/null - \
-    | sed 's/^ data-tralbum="\|"$//g' \
-    | perl -MHTML::Entities -pe 'decode_entities($_);' \
-    | jq -r '.trackinfo[].file."mp3-128"' \
-    | mpv -no-video --playlist=-
 }
 
 play-bc-collection() {
@@ -127,4 +76,3 @@ play-bc-collection() {
     | jq -r '.trackinfo[].file."mp3-128"' \
     | mpv -no-video --playlist=-
 }
-
