@@ -23,5 +23,5 @@ alias clip="xclip -select clip"
 # disk usage
 alias dud="du -h -d1"
 
-alias g="grep -RiP --exclude-dir={node_modules,.git,build,dist}"
+alias g="git grep -i"
 alias rmfirst='rm "$(ls | head -1)"'
