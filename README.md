@@ -12,6 +12,7 @@ sudo ./install.sh ~
 - https://github.com/victoriadrake/dotfiles
 - https://github.com/DeeNewcum/dotfiles
 - https://github.com/choochootrain/choochoo-toolkit
+- https://github.com/bobisme/dot
 - https://dotfiles.github.io/
 
 ## TODO

@@ -16,4 +16,5 @@ Pillow
 pygame
 requests
 SQLAlchemy
+thefuck
 yt-dlp
