@@ -1,0 +1,25 @@
+// Place your key bindings in this file to override the defaults
+[
+  // Cycle editor tabs like a browser
+  // https://stackoverflow.com/a/38978993/6243352
+  {
+    "key": "ctrl+tab",
+    "command": "workbench.action.nextEditor"
+  },
+  {
+    "key": "ctrl+shift+tab",
+    "command": "workbench.action.previousEditor"
+  },
+
+  // Toggle between terminal and editor focus
+  // https://stackoverflow.com/a/43012779/6243352
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.terminal.focus"
+  },
+  {
+    "key": "ctrl+`",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  }
+]
