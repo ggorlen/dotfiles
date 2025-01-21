@@ -1,0 +1,14 @@
+{
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "terminal.integrated.defaultProfile.osx": "bash",
+  "editor.formatOnSave": true,
+  "githubPullRequests.terminalLinksHandler": "github",
+  "terminal.integrated.persistentSessionScrollback": 10000,
+  "terminal.integrated.scrollback": 10000,
+  "editor.minimap.enabled": true,
+  "git.autofetch": true,
+  "githubPullRequests.pullBranch": "never",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "workbench.colorTheme": "Default Dark Modern",
+  "security.promptForLocalFileProtocolHandling": false
+}
