@@ -10,6 +10,7 @@ python3-lxml
 python3-pip
 rbenv
 sqlite3
+timeshift
 tree
 unzip
 valgrind

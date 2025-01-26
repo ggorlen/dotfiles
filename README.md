@@ -16,6 +16,7 @@ sudo ./install.sh ~
 - https://dotfiles.github.io/
 - https://github.com/napcs/dotfiles
 - https://github.com/tomnomnom/dotfiles/blob/master/setup.sh
+- https://github.com/twpayne/chezmoi
 
 ## TODO
 - Gnome settings backup
