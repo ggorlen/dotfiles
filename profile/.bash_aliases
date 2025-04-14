@@ -14,6 +14,7 @@ alias ~="cd ~"
 alias ll="ls -hAl"
 alias l="ll"
 alias lll="ll"
+alias f='find . -type f -not -path "*/node_modules/*" -not -path "*/.git/*" -iname' # super slow, probably use fd
 
 # python
 alias py="python3"
@@ -24,8 +25,14 @@ alias clip="xclip -select clip"
 # disk usage
 alias dud="du -h -d1"
 
+# background colors
+alias bg-red='echo -e "\033]11;#800000\007"'
+alias bg-black='echo -e "\033]11;#000000\007"'
+alias bg-gray='echo -e "\033]11;#141414\007"'
+
 # git
 alias g="git grep -i"
+alias gm="git merge"
 alias gs="git status"
 alias gsh="git show"
 alias gb="git branch"
@@ -38,9 +45,5 @@ alias gpl="git pull"
 alias gd="git diff"
 alias gds="git diff --staged"
 alias gco="git checkout"
-alias gam="git commit --amend --no-edit"
+alias gca="git commit --amend --no-edit"
 
-# background colors
-alias red='echo -e "\033]11;#800000\007"'
-alias black='echo -e "\033]11;#000000\007"'
-alias gray='echo -e "\033]11;#141414\007"'
