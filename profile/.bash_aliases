@@ -47,3 +47,5 @@ alias gds="git diff --staged"
 alias gco="git checkout"
 alias gca="git commit --amend --no-edit"
 
+# etc
+alias kfjc="mpv -no-vid https://netcast.kfjc.org/kfjc-128k-mp3"
