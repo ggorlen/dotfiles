@@ -4,23 +4,9 @@
 
 ```bash
 git clone https://github.com/ggorlen/dotfiles.git ~/dotfiles
+touch ~/.secrets
 cd ~/dotfiles
-```
-
-- macOS: `./install-mac.sh`
-- Linux: `./install-linux.sh`
-
-Then create `~/.secrets` for API keys and tokens (not committed).
-
-## Structure
-
-```
-shell/          shared aliases, exports (cross-platform)
-zsh/            zsh config (macOS)
-bash/           bash config (Linux)
-vim/            vim config
-packages/       Brewfile (macOS) + apt lists (Linux)
-vscode/         editor settings and extensions
+./install-mac.sh # or ./install-linux.sh
 ```
 
 ## Resources
@@ -41,4 +27,4 @@ vscode/         editor settings and extensions
   - https://askubuntu.com/questions/522833/how-to-dump-all-dconf-gsettings-so-that-i-can-compare-them-between-two-different
 - websites, bookmarks, other prefs
 - add browser extensions and userscripts
-- add Zoom and Chrome installs to nonessential
+- add Zoom and Chrome to Brewfile/nonessential
