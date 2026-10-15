@@ -8,8 +8,8 @@ export GPG_TTY=$(tty)
 export GITHUB_USERNAME=ggorlen
 
 # navigation
-cd() { command pushd "$@" > /dev/null; }
-popd() { command popd "$@" > /dev/null; }
+cd() { builtin pushd "$@" > /dev/null; }
+popd() { builtin popd "$@" > /dev/null; }
 
 alias ..="pushd .."
 alias ...="pushd ../.."
