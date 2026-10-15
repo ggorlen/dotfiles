@@ -129,6 +129,7 @@ tre() {
 
 # thefuck
 command -v thefuck >/dev/null && eval "$(thefuck --alias)"
+alias f="fuck"
 
 # secrets (not committed)
 [ -f ~/.secrets ] && source ~/.secrets
