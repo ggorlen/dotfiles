@@ -20,6 +20,7 @@ cd ~/dotfiles
 - https://github.com/napcs/dotfiles
 - https://github.com/tomnomnom/dotfiles/blob/master/setup.sh
 - https://github.com/twpayne/chezmoi
+- https://evanhahn.com/a-decade-of-dotfiles/
 
 ## TODO
 - Gnome settings backup
