@@ -1,8 +1,0 @@
-create-react-app
-jest
-nodemon
-npkill
-npm-check-updates
-preact-cli
-typescript
-yarn

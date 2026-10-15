@@ -8,9 +8,9 @@ set fileformats=unix,dos
 "set nobinary
 
 " :set guioptions-=m  "remove menu bar
-:set guioptions-=T  "remove toolbar
-:set guioptions-=r  "remove right-hand scroll bar
-:set guioptions-=L  "remove left-hand scroll bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
 au GUIEnter * simalt ~x
 
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
@@ -22,7 +22,7 @@ set tabstop=4
 set expandtab
 set autoindent
 set shortmess-=S
-" }}
+" }}}
 
 " DISPLAY {{{
 set ruler
@@ -66,7 +66,7 @@ nnoremap / /\v
 vnoremap / /\v
 " }}}
 
-" AUTOCMD {{{{
+" AUTOCMD {{{
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
 if has("autocmd")
@@ -74,7 +74,6 @@ if has("autocmd")
 endif
 
 " Associate file types with a particular language highlight style
-autocmd BufEnter *.tsx,*.jsx,*.ts :setlocal filetype=javascript
 au BufNewFile,BufFilePre,BufRead *.md set filetype=markdown
 " }}}
 
