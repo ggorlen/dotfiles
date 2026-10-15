@@ -2,6 +2,7 @@ curl
 fd-find
 ffmpeg
 gcc
+gh
 git
 jq
 libxml2-utils

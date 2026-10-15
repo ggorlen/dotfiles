@@ -72,7 +72,7 @@ bg() {
 }
 
 calc() {
-    echo "$*" | bc -l;
+    python3 -c "print($*)";
 }
 
 weather() {
