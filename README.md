@@ -1,9 +1,26 @@
 # dotfiles
 
+## Setup
+
+```bash
+git clone https://github.com/ggorlen/dotfiles.git ~/dotfiles
+cd ~/dotfiles
 ```
-git clone https://github.com/ggorlen/dotfiles.git && \
-cd dotfiles && \
-sudo ./install.sh ~
+
+- macOS: `./install-mac.sh`
+- Linux: `./install-linux.sh`
+
+Then create `~/.secrets` for API keys and tokens (not committed).
+
+## Structure
+
+```
+shell/          shared aliases, exports (cross-platform)
+zsh/            zsh config (macOS)
+bash/           bash config (Linux)
+vim/            vim config
+packages/       Brewfile (macOS) + apt lists (Linux)
+vscode/         editor settings and extensions
 ```
 
 ## Resources

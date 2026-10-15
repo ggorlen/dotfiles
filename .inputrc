@@ -1,0 +1,11 @@
+# case-insensitive tab completion
+set completion-ignore-case on
+
+# show all matches on ambiguous completion
+set show-all-if-ambiguous on
+
+# append / to completed directory names
+set mark-directories on
+
+# don't ring bell on ambiguous completion
+set bell-style none

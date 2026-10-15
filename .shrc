@@ -1,0 +1,121 @@
+# shared shell config (sourced by both .bashrc and .zshrc)
+
+export EDITOR='vim'
+export HISTSIZE='32768'
+export HISTFILESIZE="${HISTSIZE}"
+export HISTCONTROL='ignoreboth'
+export GPG_TTY=$(tty)
+export GITHUB_USERNAME=ggorlen
+
+# navigation
+cd() { command pushd "$@" > /dev/null; }
+popd() { command popd "$@" > /dev/null; }
+
+alias ..="pushd .."
+alias ...="pushd ../.."
+alias ....="pushd ../../.."
+alias .....="pushd ../../../.."
+alias ......="pushd ../../../../.."
+alias .......="pushd ../../../../../.."
+alias ........="pushd ../../../../../../.."
+
+# listing
+alias l="ls -hAl"
+alias ll="l"
+alias lll="l"
+alias grep='grep --color=auto'
+alias dif="diff --color --unified"
+
+# python
+alias py="python3"
+
+# disk usage
+alias dud="du -h -d1"
+
+# git
+alias ga="git add"
+alias gb="git branch"
+alias gc="git commit -m"
+alias gca="git commit --amend --no-edit"
+alias gco="git checkout"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias gg="git grep -i"
+alias gl="git log"
+alias glo="git log --oneline --decorate"
+alias gm="git merge"
+alias gpl="git pull"
+alias gps="git push"
+alias gs="git status"
+alias gsh="git show"
+
+# media
+alias kfjc="mpv --no-vid https://netcast.kfjc.org/kfjc-128k-mp3"
+
+# path/shell
+alias path='echo -e ${PATH//:/\\n}'
+alias reload="exec ${SHELL} -l"
+alias cls="printf '\033c'"
+alias cleanup-ds="find . -type f -name '*.DS_Store' -ls -delete"
+
+# utilities
+
+# changes the background color of the terminal
+bg() {
+    case "${1:-}" in
+        red)   echo -e "\033]11;#800000\007" ;;
+        black) echo -e "\033]11;#000000\007" ;;
+        gray)  echo -e "\033]11;#141414\007" ;;
+        reset) echo -e "\033]111;\007" ;;
+        *)     echo "usage: bg {red|black|gray|reset}" ;;
+    esac
+}
+
+calc() {
+    echo "$*" | bc -l;
+}
+
+weather() {
+    local LOCALE=$(echo ${LANG:-en} | cut -c1-2)
+    if [ $# -eq 0 ]; then
+        local LOCATION=$(curl -s ipinfo.io/loc)
+    else
+        local LOCATION=$1
+    fi
+    curl -s "$LOCALE.wttr.in/$LOCATION?format=v2"
+}
+
+git-branch-cleanup() {
+    git fetch --prune --quiet || return 1
+    local dominated=()
+    local branch
+    while IFS= read -r branch; do
+        [[ -n "$branch" ]] && dominated+=("$branch")
+    done < <(git branch --format '%(if:equals=gone)%(upstream:track,nobracket)%(then)%(refname:short)%(end)' --omit-empty)
+    if (( ${#dominated[@]} == 0 )); then
+        echo "No gone branches found."
+        return 0
+    fi
+    if [[ "${1:-}" == "-n" || "${1:-}" == "--dry-run" ]]; then
+        printf "Would delete: %s\n" "${dominated[@]}"
+        echo "(${#dominated[@]} branch(es). Run without --dry-run to delete.)"
+    else
+        for branch in "${dominated[@]}"; do
+            git branch -D "$branch"
+        done
+    fi
+}
+
+mkd() {
+    mkdir -p "$@" && cd "$_";
+}
+
+tre() {
+    tree -aC -I '.git|node_modules' --dirsfirst "$@" | less -FRNX;
+}
+
+# thefuck
+command -v thefuck >/dev/null && eval "$(thefuck --alias)"
+
+# secrets (not committed)
+[ -f ~/.secrets ] && source ~/.secrets
