@@ -71,6 +71,19 @@ bg() {
     esac
 }
 
+to-mp3() {
+    local files=()
+    if [ $# -eq 0 ]; then
+        files=(*.wav)
+    else
+        files=("$@")
+    fi
+    for f in "${files[@]}"; do
+        [ -f "$f" ] || { echo "skipping: $f (not found)"; continue; }
+        ffmpeg -i "$f" -b:a 192k "${f%.wav}.mp3"
+    done
+}
+
 calc() {
     python3 -c "print($*)";
 }
